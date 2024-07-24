@@ -1,12 +1,12 @@
 @using Habanerio.Samples.Customers.MongoEFCore.Entities
-@model (IEnumerable<CustomerDbEntity> Results, int TotalPages, int TotalCount)
+@model Habanerio.Core.PagedResults<CustomerDbEntity>
 
 @{
     ViewData["Title"] = "Sample Project - Home Page";
 }
 
 @{
-    var customers = Model.Results?.ToList() ?? new List<CustomerDbEntity>();
+    var customers = Model.Items?.ToList() ?? new List<CustomerDbEntity>();
     var totalPages = Model.TotalPages;
     var totalCount = Model.TotalCount;
 }

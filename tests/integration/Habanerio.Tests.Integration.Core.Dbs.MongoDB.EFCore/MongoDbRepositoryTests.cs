@@ -279,7 +279,7 @@ public class MongoDbRepositoryTests : IClassFixture<MongoDbContainerBlogFixture>
     [Fact]
     public async Task CanCall_FilterAsync()
     {
-        var term = "Blog 1";
+        var term = "Blog 99";
         var pageNo = 1;
         var pageSize = 25;
         var results = await _mongoDbRepository.SearchAsync(term, "", "", pageNo, pageSize);

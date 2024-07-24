@@ -52,8 +52,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\src\core\dbs\Habanerio.Core.Dbs.EFCore\Habanerio.Core.DBs.EFCore.csproj" />
-        <ProjectReference Include="..\..\..\src\core\dbs\Habanerio.Core.Dbs.MongoDB.EFCore\Habanerio.Core.Dbs.MongoDB.EFCore.csproj" />
+      <ProjectReference Include="..\..\..\src\Habanerio.Core.Dbs\Habanerio.Core.Dbs.MongoDB.EFCore\Habanerio.Core.Dbs.MongoDB.EFCore.csproj" />
     </ItemGroup>
 
     <ItemGroup>
