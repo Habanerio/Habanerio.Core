@@ -396,4 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/tests/integration/Habanerio.Tests.Integration.Core.Dbs.MongoDB.EFCore/appsettings.Development.json
+/**/appsettings.Development.json
