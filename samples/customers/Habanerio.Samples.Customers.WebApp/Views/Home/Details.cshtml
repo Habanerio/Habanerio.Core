@@ -1,0 +1,42 @@
+@using Habanerio.Samples.Customers.MongoEFCore.Entities
+@model CustomerDbEntity
+
+@{
+    ViewData["Title"] = "Sample Project - Details Page";
+}
+
+<div>
+    <h1>Customer Details</h1>
+    @using (Html.BeginForm("details", "home", FormMethod.Post))
+    {
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Customer ID</th>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <th>First Name</th>
+                    <td>@Html.TextBoxFor(c => c.FirstName)</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>@Html.TextBoxFor(c => c.LastName)</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>@Html.TextBoxFor(c => c.Email)</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-warning">Save</button>
+                        <a href="@Url.Action("index", "home")">Back to List</a>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+</div>

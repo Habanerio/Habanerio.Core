@@ -1,0 +1,58 @@
+@using Habanerio.Samples.Customers.MongoEFCore.Entities
+@model (IEnumerable<CustomerDbEntity> Results, int TotalPages, int TotalCount)
+
+@{
+    ViewData["Title"] = "Sample Project - Home Page";
+}
+
+@{
+    var customers = Model.Results?.ToList() ?? new List<CustomerDbEntity>();
+    var totalPages = Model.TotalPages;
+    var totalCount = Model.TotalCount;
+}
+
+<div class="container">
+    <div>
+        <div class="">
+            @using (Html.BeginForm("index", "home", FormMethod.Post))
+            {
+                <input id="first-name" name="FirstName" placeholder="First Name" />
+                <input id="last-name" name="LastName" placeholder="Last Name" />
+                <input id="email-name" name="Email" placeholder="Email" />
+                <button id="search" type="submit">Search</button>
+            }
+        </div>
+    </div>
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (!customers.Any())
+            {
+                <tr>
+                    <td colspan="3">No records found</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var customer in customers)
+                {
+                    <tr>
+                        <td><a asp-action="Details" asp-route-id="@customer.Id">@customer.Id</a></td>
+                        <td>@customer.FirstName</td>
+                        <td>@customer.LastName</td>
+                        <td>@customer.Email</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
