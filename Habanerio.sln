@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Habanerio.Core.DBs.EFCore",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Habanerio.Core.Dbs.MongoDB.EFCore", "src\Habanerio.Core.Dbs\Habanerio.Core.Dbs.MongoDB.EFCore\Habanerio.Core.Dbs.MongoDB.EFCore.csproj", "{DDDFB6F0-4A53-4AE2-97E6-F8D9FA8A07DD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unit", "unit", "{8BC7508B-4F2A-4DF9-BC76-F9C6C86B431C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Habanerio.Tests.Unit.Core", "tests\unit\Habanerio.Tests.Unit.Core\Habanerio.Tests.Unit.Core.csproj", "{3EBBCF4F-043B-4AAC-8578-847B97AEEEB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +71,10 @@ Global
 		{DDDFB6F0-4A53-4AE2-97E6-F8D9FA8A07DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDDFB6F0-4A53-4AE2-97E6-F8D9FA8A07DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDDFB6F0-4A53-4AE2-97E6-F8D9FA8A07DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EBBCF4F-043B-4AAC-8578-847B97AEEEB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EBBCF4F-043B-4AAC-8578-847B97AEEEB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EBBCF4F-043B-4AAC-8578-847B97AEEEB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EBBCF4F-043B-4AAC-8578-847B97AEEEB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +89,8 @@ Global
 		{EFB7E356-33EB-43B2-92A1-820B9E615B6B} = {06E84655-9D87-425C-8112-CB0B4D407B31}
 		{EA5B2F34-0604-4EA6-9249-957CB654C5FC} = {06E84655-9D87-425C-8112-CB0B4D407B31}
 		{DDDFB6F0-4A53-4AE2-97E6-F8D9FA8A07DD} = {06E84655-9D87-425C-8112-CB0B4D407B31}
+		{8BC7508B-4F2A-4DF9-BC76-F9C6C86B431C} = {F02DE3EA-8B53-4181-9926-3E6EACE7DD74}
+		{3EBBCF4F-043B-4AAC-8578-847B97AEEEB1} = {8BC7508B-4F2A-4DF9-BC76-F9C6C86B431C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A824DEA-C71A-4EA2-8F2D-27F4845FB350}

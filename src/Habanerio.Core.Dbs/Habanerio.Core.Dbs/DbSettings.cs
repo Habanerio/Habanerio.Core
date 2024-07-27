@@ -1,5 +1,8 @@
+using Habanerio.Core.Configurations;
+
 namespace Habanerio.Core.DBs;
-public class DbOptions
+
+public class DbSettings : AppSettingsSection
 {
     /// <summary>
     /// Gets or sets the connection string.

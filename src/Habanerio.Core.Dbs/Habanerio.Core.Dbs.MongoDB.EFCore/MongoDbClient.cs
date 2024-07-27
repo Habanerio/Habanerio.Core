@@ -19,7 +19,7 @@ public sealed class MongoDbClient : MongoClient
         Database = client.GetDatabase(client.Settings.ApplicationName);
     }
 
-    public MongoDbClient(IOptions<MongoDbOptions> options)
+    public MongoDbClient(IOptions<MongoDbSettings> options)
     {
         if (options?.Value == null)
             throw new ArgumentException(ERROR_COULD_NOT_GET_OPTIONS, nameof(options));

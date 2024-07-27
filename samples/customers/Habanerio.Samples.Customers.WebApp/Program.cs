@@ -30,7 +30,7 @@ builder.Services.AddControllersWithViews();
 
 /************* With DbContextOptions *************/
 
-var mongoDBSettings = builder.Configuration.GetSection("SampleMongoDBSettings").Get<MongoDbOptions>();
+var mongoDBSettings = builder.Configuration.GetSection("SampleMongoDBSettings").Get<MongoDbSettings>();
 //builder.Services.Configure<MongoDbOptions>(builder.Configuration.GetSection("SampleMongoDBSettings"));
 
 builder.Services.AddDbContext<SampleMongoDbContext>(options =>

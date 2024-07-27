@@ -20,9 +20,9 @@ public interface ITestBlogMongoDbRepository : IDbRepository<BlogPostEntity, Obje
 /// <summary>
 /// This is only to wrap and expose the underlying MongoDbRepository
 /// </summary>
-public class TestBlogMongoDbMongoDbRepository : MongoDbRepository<BlogPostEntity>, ITestBlogMongoDbRepository
+public class TestBlogMongoDbRepository : MongoDbRepository<BlogPostEntity>, ITestBlogMongoDbRepository
 {
-    public TestBlogMongoDbMongoDbRepository(MongoDbContext context) : base(context)
+    public TestBlogMongoDbRepository(MongoDbContext context) : base(context)
     {
         //DbSet = Context.Set<BlogPostEntity>();
     }

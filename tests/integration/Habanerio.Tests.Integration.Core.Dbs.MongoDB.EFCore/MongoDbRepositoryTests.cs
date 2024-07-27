@@ -1,7 +1,10 @@
 using System.Collections.ObjectModel;
+using Habanerio.Core.DBs.MongoDB.EFCore;
 using Habanerio.Tests.Integration.Core.Dbs.MongoDB.EFCore.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using Testcontainers.MongoDb;
 using Xunit.Abstractions;
 using Xunit.Sdk;
@@ -54,7 +57,7 @@ public class MongoDbContainerBlogFixture : MongoDbContainerFixture
             .Options;
 
         _dbContext = new TestBlogMongoDbContext(_dbOptions);
-        _blogMongoDbRepository = new TestBlogMongoDbMongoDbRepository(_dbContext);
+        _blogMongoDbRepository = new TestBlogMongoDbRepository(_dbContext);
 
         //var collection = _blogMongoDbRepository.GetCollection();
 
@@ -135,7 +138,7 @@ public class MongoDbBlogFixture : MongoDbContainerFixture
             .Options;
 
         _dbContext = new TestBlogMongoDbContext(_dbOptions);
-        _blogMongoDbRepository = new TestBlogMongoDbMongoDbRepository(_dbContext);
+        _blogMongoDbRepository = new TestBlogMongoDbRepository(_dbContext);
         //_dbContext.BlogPosts =  _dbContext.Set<BlogPostEntity>();
 
         PopulateData();
@@ -193,7 +196,6 @@ public class MongoDbBlogFixture : MongoDbContainerFixture
 
 public class MongoDbRepositoryTests : IClassFixture<MongoDbContainerBlogFixture>, IDisposable
 {
-
     private readonly MongoDbContainerBlogFixture _fixture;
     private readonly ITestOutputHelper _output;
 
@@ -204,13 +206,33 @@ public class MongoDbRepositoryTests : IClassFixture<MongoDbContainerBlogFixture>
         _fixture = fixture;
         _output = output;
 
-        _mongoDbRepository = new TestBlogMongoDbMongoDbRepository(_fixture.DbContext);
+        _mongoDbRepository = new TestBlogMongoDbRepository(_fixture.DbContext);
     }
 
     [Fact]
     public void CanConstruct_MongoDbContext()
     {
-        var context = new TestBlogMongoDbContext(_fixture.DbOptions);
+        var dbOptions = new DbContextOptionsBuilder<MongoDbContext>()
+            .UseMongoDB(_fixture.ConnectionString, "test-blog")
+            .Options;
+
+        var context = new MongoDbContext(dbOptions);
+
+        Assert.NotNull(context);
+    }
+
+    [Fact]
+    public void CanConstruct_MongoDbContext_With_IOptions()
+    {
+        var mongoSettings = new MongoDbSettings()
+        {
+            ConnectionString = _fixture.ConnectionString,
+            DatabaseName = "test-blog",
+        };
+
+        var mongoDbOptions = Options.Create(mongoSettings);
+
+        var context = new MongoDbContext(mongoDbOptions);
 
         Assert.NotNull(context);
     }
@@ -218,10 +240,22 @@ public class MongoDbRepositoryTests : IClassFixture<MongoDbContainerBlogFixture>
     [Fact]
     public void CanConstruct_MongoDbRepository()
     {
-        var repository = new TestBlogMongoDbMongoDbRepository(_fixture.DbContext);
+        var repository = new TestBlogMongoDbRepository(_fixture.DbContext);
 
         Assert.NotNull(repository);
     }
+
+    //[Fact]
+    //public void CanCall_Collection()
+    //{
+    //    var collection = _mongoDbRepository.GetCollection();
+
+    //    Assert.NotNull(collection);
+
+    //    Assert.Equal("BlogPostEntity", collection.CollectionNamespace.CollectionName);
+
+    //    Assert.True(collection.CountDocuments(FilterDefinition<BlogPostEntity>.Empty) > 0);
+    //}
 
     [Fact]
     public void CanCall_Exists_ById()

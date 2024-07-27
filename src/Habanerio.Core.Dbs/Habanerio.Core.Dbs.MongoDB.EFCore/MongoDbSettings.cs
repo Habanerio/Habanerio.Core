@@ -1,5 +1,5 @@
 namespace Habanerio.Core.DBs.MongoDB.EFCore;
-public class MongoDbOptions : DbOptions
+public class MongoDbSettings : DbSettings
 {
     /// <summary>
     /// Gets or sets the name of the database.
@@ -8,4 +8,8 @@ public class MongoDbOptions : DbOptions
     /// The name of the database.
     /// </value>
     public virtual string DatabaseName { get; set; } = "";
+
+    public virtual bool EnableSensitiveDataLogging { get; set; } = false;
+
+    public virtual bool EnableDetailedErrors { get; set; } = false;
 }

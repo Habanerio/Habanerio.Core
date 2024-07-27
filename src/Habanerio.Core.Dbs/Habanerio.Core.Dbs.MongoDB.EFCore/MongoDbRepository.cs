@@ -1,5 +1,5 @@
 using Habanerio.Core.DBs.EFCore;
-
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -11,7 +11,9 @@ public class MongoDbRepository<TDbEntity> : DbRepositoryBase<TDbEntity, ObjectId
     private const string EXCEPTION_IDS_CANT_BE_EMPTY = "The Ids collection cannot be null or empty";
     private const string EXCEPTION_IDS_CONTAINS_EMPTY_ID = "The Ids collection contains an empty id";
 
-    //protected MongoDbRepository(IOptions<MongoDbOptions> options) : this(new MongoDbContext(options)) { }
+    private IMongoCollection<TDbEntity>? _collection;
+
+    protected MongoDbRepository(IOptions<MongoDbSettings> options) : this(new MongoDbContext(options)) { }
 
     //public IMongoCollection<TDbEntity> Collection
     //{
@@ -27,10 +29,23 @@ public class MongoDbRepository<TDbEntity> : DbRepositoryBase<TDbEntity, ObjectId
 
     protected MongoDbRepository(MongoDbContext context) : base(context)
     {
-        //var database = Context.Database.GetDbConnection().Database;
-        //var mongoDatabase = new MongoClient(Context.Database.GetConnectionString())
-        //    .GetDatabase(database);
+
     }
+
+    //protected IMongoCollection<TDbEntity> Collection
+    //{
+    //    get
+    //    {
+    //        if (_collection is null)
+    //        {
+    //            var mongoDatabase = ((MongoDbContext)Context).MongoDb;
+
+    //            _collection = mongoDatabase.GetCollection<TDbEntity>(typeof(TDbEntity).Name);
+    //        }
+
+    //        return _collection;
+    //    }
+    //}
 
     public override bool Exists(ObjectId id)
     {

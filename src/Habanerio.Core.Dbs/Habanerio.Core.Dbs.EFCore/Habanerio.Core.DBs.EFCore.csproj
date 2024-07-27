@@ -40,6 +40,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Habanerio.Core\Habanerio.Core.csproj" />
+        <ProjectReference Include="..\Habanerio.Core.Dbs\Habanerio.Core.Dbs.csproj" />
     </ItemGroup>
 
 </Project>
